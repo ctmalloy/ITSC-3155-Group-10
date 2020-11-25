@@ -9,32 +9,38 @@ class Notepad:
 
 	root = Tk() 
 
-	# default window width and height 
+	# Deafault Window Size
 	thisWidth = 300
 	thisHeight = 300
+
+	# Add Text Area
 	thisTextArea = Text(root)
+
+	# Add Menu Bar
 	thisMenuBar = Menu(root) 
 	thisFileMenu = Menu(thisMenuBar, tearoff=0) 
 	thisEditMenu = Menu(thisMenuBar, tearoff=0) 
 	thisHelpMenu = Menu(thisMenuBar, tearoff=0) 
-	thisRightClickMenu = Menu(root, tearoff = 0) 
 	
-	# To add scrollbar 
+	# Add Scrollbar 
 	thisScrollBar = Scrollbar(thisTextArea)	 
 	file = None
 
-	# To add right click menu
+	# Add Right-Click Menu
+	thisRightClickMenu = Menu(root, tearoff = 0)
 
 	def __init__(self,**kwargs): 
 
-		# Set icon 
+		# Set Icon 
 		try: 
-				self.root.wm_iconbitmap("Notepad.ico") 
+			self.root.wm_iconbitmap("Notepad.ico") 
 		except: 
-				pass
+			pass
 
-		# Set window size (the default is 300x300) 
+		# Set Title 
+		self.root.title("Untitled - Notepad")
 
+		# Set Window Size
 		try: 
 			self.thisWidth = kwargs['width'] 
 		except KeyError: 
@@ -43,23 +49,16 @@ class Notepad:
 		try: 
 			self.thisHeight = kwargs['height'] 
 		except KeyError: 
-			pass
+			pass 
 
-		# Set the window text 
-		self.root.title("Untitled - Notepad") 
-
-		# Center the window 
+		# Center Window
 		screenWidth = self.root.winfo_screenwidth() 
 		screenHeight = self.root.winfo_screenheight() 
 	
-		# For left-align
-		left = (screenWidth / 2) - (self.thisWidth / 2) 
-		
-		# For right-align
-		top = (screenHeight / 2) - (self.thisHeight /2) 
-		
-		# For top and bottom 
-		self.root.geometry('%dx%d+%d+%d' % (self.thisWidth, self.thisHeight, left, top)) 
+		# Set Window geometry
+		width = (screenWidth / 2) - (self.thisWidth / 2) 
+		height = (screenHeight / 2) - (self.thisHeight /2) 
+		self.root.geometry('%dx%d+%d+%d' % (self.thisWidth, self.thisHeight, width, height)) 
 
 		# To make the textarea auto resizable 
 		self.root.grid_rowconfigure(0, weight=1) 
