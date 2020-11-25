@@ -12,7 +12,7 @@ class Notepad:
 	# default window width and height 
 	thisWidth = 300
 	thisHeight = 300
-	thisTextArea = Text(root) 
+	thisTextArea = Text(root)
 	thisMenuBar = Menu(root) 
 	thisFileMenu = Menu(thisMenuBar, tearoff=0) 
 	thisEditMenu = Menu(thisMenuBar, tearoff=0) 
@@ -68,43 +68,32 @@ class Notepad:
 		self.root.grid_columnconfigure(0, weight=1) 
 
 		# Add controls (widget) 
-		self.thisTextArea.grid(sticky = N + E + S + W) 
+		self.thisTextArea.grid(sticky = N + E + S + W)
+		self.thisTextArea.configure(undo=True,autoseparators=True, maxundo=-1)
 		
-		# To open new file 
+		# File Menu
 		self.thisFileMenu.add_command(label="New", command=self.newFile)	 
-		
-		# To open a already existing file 
 		self.thisFileMenu.add_command(label="Open", command=self.openFile) 
-		
-		# To save current file 
-		self.thisFileMenu.add_command(label="Save", command=self.saveFile)	 
-
-		# To create a line in the dialog		 
+		self.thisFileMenu.add_command(label="Save", command=self.saveFile)	 	 
 		self.thisFileMenu.add_separator()										 
 		self.thisFileMenu.add_command(label="Exit", command=self.quitApplication) 
-		self.thisMenuBar.add_cascade(label="File", menu=self.thisFileMenu)	 
-		
-		# To give a feature of cut 
+		self.thisMenuBar.add_cascade(label="File", menu=self.thisFileMenu)	
+
+		# Edit Menu	
 		self.thisEditMenu.add_command(label="Cut", command=self.cut)			 
-	
-		# to give a feature of copy	 
 		self.thisEditMenu.add_command(label="Copy", command=self.copy)		 
-		
-		# To give a feature of paste 
-		self.thisEditMenu.add_command(label="Paste", command=self.paste)		 
-		
-		# To give a feature of editing 
+		self.thisEditMenu.add_command(label="Paste", command=self.paste) 
 		self.thisMenuBar.add_cascade(label="Edit", menu=self.thisEditMenu)	 
 		
-		# To create a feature of description of the notepad 
+		# Help Menu
 		self.thisHelpMenu.add_command(label="About Notepad", command=self.showAbout) 
 		self.thisMenuBar.add_cascade(label="Help", menu=self.thisHelpMenu) 
 
+		# Configure menu
 		self.root.config(menu=self.thisMenuBar) 
 
-		self.thisScrollBar.pack(side=RIGHT,fill=Y)					 
-		
-		# Scrollbar will adjust automatically according to the content		 
+		# Add Scrollbar
+		self.thisScrollBar.pack(side=RIGHT,fill=Y)						 
 		self.thisScrollBar.config(command=self.thisTextArea.yview)	 
 		self.thisTextArea.config(yscrollcommand=self.thisScrollBar.set) 
 
@@ -113,6 +102,8 @@ class Notepad:
 		self.thisRightClickMenu.add_command(label="Copy", command=self.copy)
 		self.thisRightClickMenu.add_command(label="Paste", command=self.paste)
 		self.thisRightClickMenu.add_command(label="Select All", command=self.select_all)
+		self.thisRightClickMenu.add_command(label="Undo", command=self.undo)
+		self.thisRightClickMenu.add_command(label="Redo", command=self.redo)
 		self.thisTextArea.bind("<Button-3>", self.do_popup)
 
 	def do_popup(self, event): 
@@ -126,13 +117,11 @@ class Notepad:
 		# exit() 
 
 	def showAbout(self): 
-		showinfo("Notepad","Mrinal Verma") 
+		showinfo("Notepad","ITSC 3155") 
 
 	def openFile(self): 
 		
-		self.file = askopenfilename(defaultextension=".txt", 
-									filetypes=[("All Files","*.*"), 
-										("Text Documents","*.txt")]) 
+		self.file = askopenfilename(defaultextension=".txt", filetypes=[("All Files","*.*"), ("Text Documents","*.txt")]) 
 
 		if self.file == "": 
 			
@@ -161,10 +150,8 @@ class Notepad:
 
 		if self.file == None: 
 			# Save as new file 
-			self.file = asksaveasfilename(initialfile='Untitled.txt', 
-											defaultextension=".txt", 
-											filetypes=[("All Files","*.*"), 
-												("Text Documents","*.txt")]) 
+			self.file = asksaveasfilename(initialfile='Untitled.txt', defaultextension=".txt",
+				filetypes=[("All Files","*.*"), ("Text Documents","*.txt")]) 
 
 			if self.file == "": 
 				self.file = None
@@ -198,6 +185,12 @@ class Notepad:
 		#self.thisTextArea.mark_set(INSERT, "1.0")
 		self.thisTextArea.see(INSERT)
 		return 'break'
+
+	def undo(self):
+		self.thisTextArea.event_generate("<<Undo>>")
+
+	def redo(self):
+		self.thisTextArea.event_generate("<<Redo>>")
 	
 	def run(self): 
 		# Run main application 
