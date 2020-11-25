@@ -139,9 +139,13 @@ class Notepad:
 
 		
 	def newFile(self): 
-		self.root.title("Untitled - Notepad") 
-		self.file = None
-		self.thisTextArea.delete(1.0,END) 
+		result = messagebox.askyesnocancel("Save file?", "Save changes before closing? If you don't save any changes will be lost.")
+		if result:
+			self.saveFile()
+		elif not result:
+			self.root.title("Untitled - Notepad") 
+			self.file = None
+			self.thisTextArea.delete(1.0,END) 
 
 	def saveFile(self): 
 		usb = pathlib.Path("usb")
