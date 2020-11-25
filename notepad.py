@@ -6,7 +6,7 @@ from tkinter.messagebox import *
 from tkinter.filedialog import *
 
 class Notepad: 
-
+	# Root Tk object
 	root = Tk() 
 
 	# Deafault Window Size
@@ -29,8 +29,8 @@ class Notepad:
 	# Add Right-Click Menu
 	thisRightClickMenu = Menu(root, tearoff = 0)
 
+	# Constructor 
 	def __init__(self,**kwargs):
-
 		# Set Window Icon 
 		try: 
 			self.root.wm_iconbitmap("Notepad.ico") 
@@ -195,29 +195,25 @@ class Notepad:
 		self.thisTextArea.event_generate("<<Redo>>")
 	
 	def run(self): 
-		# Run main application 
+		# Run this instance
 		self.root.mainloop()
 
-
-
-# Run main application 
-notepad = Notepad(width=600,height=400) 
-file = pathlib.Path("usb")
-file2 = pathlib.Path("local")
-if not file.exists() and not file2.exists():
-	result = messagebox.askquestion("Welcome!", "Are you a USB user?")
-	if result == 'yes':
-		#create usb file
-		usb_file = open("usb", "w+")
-		usb_file.close()
-		os.mkdir("Notes")
-		notepad.run()			
-	else:
-		#create local file
-		local_file = open("local", "w+")
-		local_file.close()
+if __name__=="__main__": 
+	notepad = Notepad(width=600,height=400) 
+	file = pathlib.Path("usb")
+	file2 = pathlib.Path("local")
+	if not file.exists() and not file2.exists():
+		result = messagebox.askquestion("Welcome!", "Are you a USB user?")
+		if result == 'yes':
+			#create usb file
+			usb_file = open("usb", "w+")
+			usb_file.close()
+			os.mkdir("Notes")
+			notepad.run()			
+		else:
+			#create local file
+			local_file = open("local", "w+")
+			local_file.close()
+			notepad.run()
+	elif file.exists() or file2.exists():
 		notepad.run()
-elif file.exists() or file2.exists():
-	notepad.run()
-
-
