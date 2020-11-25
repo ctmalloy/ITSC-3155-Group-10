@@ -52,16 +52,14 @@ class Notepad:
 		screenWidth = self.root.winfo_screenwidth() 
 		screenHeight = self.root.winfo_screenheight() 
 	
-		# For left-alling 
+		# For left-align
 		left = (screenWidth / 2) - (self.thisWidth / 2) 
 		
-		# For right-allign 
+		# For right-align
 		top = (screenHeight / 2) - (self.thisHeight /2) 
 		
 		# For top and bottom 
-		self.root.geometry('%dx%d+%d+%d' % (self.thisWidth, 
-											self.thisHeight, 
-											left, top)) 
+		self.root.geometry('%dx%d+%d+%d' % (self.thisWidth, self.thisHeight, left, top)) 
 
 		# To make the textarea auto resizable 
 		self.root.grid_rowconfigure(0, weight=1) 
