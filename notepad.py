@@ -215,6 +215,9 @@ if not file.exists() and not file2.exists():
 		#create usb file
 		usb_file = open("usb", "w+")
 		usb_file.close()
+		result2 = messagebox.askquestion("USB User", "Would you like to create a 'Notes' folder?")
+		if result2 == 'yes':
+			os.mkdir("Notes")
 		notepad.run()
 	else:
 		#create local file
