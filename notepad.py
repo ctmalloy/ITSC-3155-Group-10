@@ -29,15 +29,15 @@ class Notepad:
 	# Add Right-Click Menu
 	thisRightClickMenu = Menu(root, tearoff = 0)
 
-	def __init__(self,**kwargs): 
+	def __init__(self,**kwargs):
 
-		# Set Icon 
+		# Set Window Icon 
 		try: 
 			self.root.wm_iconbitmap("Notepad.ico") 
 		except: 
 			pass
 
-		# Set Title 
+		# Set Window Title 
 		self.root.title("Untitled - Notepad")
 
 		# Set Window Size
@@ -101,9 +101,9 @@ class Notepad:
 		self.thisRightClickMenu.add_command(label="Select All", command=self.select_all)
 		self.thisRightClickMenu.add_command(label="Undo", command=self.undo)
 		self.thisRightClickMenu.add_command(label="Redo", command=self.redo)
-		self.thisTextArea.bind("<Button-3>", self.do_popup)
+		self.thisTextArea.bind("<Button-3>", self.right_click)
 
-	def do_popup(self, event): 
+	def right_click(self, event): 
 	    try: 
 	        self.thisRightClickMenu.tk_popup(event.x_root, event.y_root) 
 	    finally: 
@@ -117,24 +117,24 @@ class Notepad:
 		showinfo("Notepad","ITSC 3155") 
 
 	def openFile(self): 
-		
-		self.file = askopenfilename(defaultextension=".txt", filetypes=[("All Files","*.*"), ("Text Documents","*.txt")]) 
+		usb = pathlib.Path("usb")
 
+		if usb.exists():
+			self.file = askopenfilename(initialdir="Notes", defaultextension=".txt", filetypes=[("All Files","*.*"), ("Text Documents","*.txt")]) 
+		else:
+			self.file = askopenfilename(defaultextension=".txt", filetypes=[("All Files","*.*"), ("Text Documents","*.txt")]) 
+		
 		if self.file == "": 
-			
 			# no file to open 
 			self.file = None
 		else: 
-			
-			# Try to open the file 
-			# set the window title 
+			# Set Window Title 
 			self.root.title(os.path.basename(self.file) + " - Notepad") 
 			self.thisTextArea.delete(1.0,END) 
 
+			# Open File
 			file = open(self.file,"r") 
-
 			self.thisTextArea.insert(1.0,file.read()) 
-
 			file.close() 
 
 		
