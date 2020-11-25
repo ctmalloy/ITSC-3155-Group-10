@@ -1,5 +1,6 @@
 import tkinter 
-import os	 
+import os	
+import pathlib 
 from tkinter import *
 from tkinter.messagebox import *
 from tkinter.filedialog import *
@@ -111,6 +112,7 @@ class Notepad:
 		self.thisRightClickMenu.add_command(label="Cut", command=self.cut)
 		self.thisRightClickMenu.add_command(label="Copy", command=self.copy)
 		self.thisRightClickMenu.add_command(label="Paste", command=self.paste)
+		self.thisRightClickMenu.add_command(label="Select All", command=self.select_all)
 		self.thisTextArea.bind("<Button-3>", self.do_popup)
 
 	def do_popup(self, event): 
@@ -191,14 +193,35 @@ class Notepad:
 	def paste(self): 
 		self.thisTextArea.event_generate("<<Paste>>") 
 
+	def select_all(self):
+		self.thisTextArea.tag_add(SEL, "1.0", END)
+		#self.thisTextArea.mark_set(INSERT, "1.0")
+		self.thisTextArea.see(INSERT)
+		return 'break'
+	
 	def run(self): 
-
 		# Run main application 
-		self.root.mainloop() 
-
+		self.root.mainloop()
 
 
 
 # Run main application 
 notepad = Notepad(width=600,height=400) 
-notepad.run() 
+file = pathlib.Path("usb")
+file2 = pathlib.Path("local")
+if not file.exists() and not file2.exists():
+	result = messagebox.askquestion("Welcome!", "Are you a USB user?")
+	if result == 'yes':
+		#create usb file
+		usb_file = open("usb", "w+")
+		usb_file.close()
+		notepad.run()
+	else:
+		#create local file
+		local_file = open("local", "w+")
+		local_file.close()
+		notepad.run()
+elif file.exists() or file2.exists():
+	notepad.run()
+
+
