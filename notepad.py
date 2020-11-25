@@ -144,11 +144,16 @@ class Notepad:
 		self.thisTextArea.delete(1.0,END) 
 
 	def saveFile(self): 
+		usb = pathlib.Path("usb")
 
 		if self.file == None: 
 			# Save as new file 
-			self.file = asksaveasfilename(initialfile='Untitled.txt', defaultextension=".txt",
-				filetypes=[("All Files","*.*"), ("Text Documents","*.txt")]) 
+			if usb.exists():
+				self.file = asksaveasfilename(initialdir="Notes", initialfile='Untitled.txt', defaultextension=".txt",
+					filetypes=[("All Files","*.*"), ("Text Documents","*.txt")])
+			else:
+				self.file = asksaveasfilename(initialfile='Untitled.txt', defaultextension=".txt",
+					filetypes=[("All Files","*.*"), ("Text Documents","*.txt")])
 
 			if self.file == "": 
 				self.file = None
@@ -205,10 +210,8 @@ if not file.exists() and not file2.exists():
 		#create usb file
 		usb_file = open("usb", "w+")
 		usb_file.close()
-		result2 = messagebox.askquestion("USB User", "Would you like to create a 'Notes' folder?")
-		if result2 == 'yes':
-			os.mkdir("Notes")
-		notepad.run()
+		os.mkdir("Notes")
+		notepad.run()			
 	else:
 		#create local file
 		local_file = open("local", "w+")
