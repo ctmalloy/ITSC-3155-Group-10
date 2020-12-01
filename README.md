@@ -27,9 +27,9 @@ Conversion notes:
 
 1. The list of your user stories.
     1. **Local User**
-        1. A user wishes to have a simple application that allows them to create, save and open notes on their system. When running the notes application the user is expecting simple features that give them basic editing features such as copy, paste, undo, redo, select all, etc. 
+        a. A user wishes to have a simple application that allows them to create, save and open notes on their system. When running the notes application the user is expecting simple features that give them basic editing features such as copy, paste, undo, redo, select all, etc. 
     2. **USB User**
-        2. A user wishes to have a simple and portable application to put on a USB drive that allows them to create, open and edit notes saved on their USB drive on any system. When running the notes application the user is expecting simple features that give them basic editing features such as copy, paste, undo, redo, select all, etc. The user requires the application to save and open their notes to their USB drive.
+        b. A user wishes to have a simple and portable application to put on a USB drive that allows them to create, open and edit notes saved on their USB drive on any system. When running the notes application the user is expecting simple features that give them basic editing features such as copy, paste, undo, redo, select all, etc. The user requires the application to save and open their notes to their USB drive.
 2. The list of the system features you extracted from the user stories.
     3. Default filesystem access after first run for local user
     4. Creation of ‘Notes’ folder and forced access to ‘Notes’ folder after first run for USB user
