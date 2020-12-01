@@ -1,3 +1,6 @@
+import tkinter 
+import os	 
+from tkinter import *
 import pathlib
 from tkinter import messagebox
 from tkinter.filedialog import *
