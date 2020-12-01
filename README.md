@@ -26,10 +26,8 @@ Conversion notes:
 
 
 1. The list of your user stories.
-    1. **Local User**
-        a. A user wishes to have a simple application that allows them to create, save and open notes on their system. When running the notes application the user is expecting simple features that give them basic editing features such as copy, paste, undo, redo, select all, etc. 
-    2. **USB User**
-        b. A user wishes to have a simple and portable application to put on a USB drive that allows them to create, open and edit notes saved on their USB drive on any system. When running the notes application the user is expecting simple features that give them basic editing features such as copy, paste, undo, redo, select all, etc. The user requires the application to save and open their notes to their USB drive.
+    1. **Local User** A user wishes to have a simple application that allows them to create, save and open notes on their system. When running the notes application the user is expecting simple features that give them basic editing features such as copy, paste, undo, redo, select all, etc. 
+    2. **USB User** A user wishes to have a simple and portable application to put on a USB drive that allows them to create, open and edit notes saved on their USB drive on any system. When running the notes application the user is expecting simple features that give them basic editing features such as copy, paste, undo, redo, select all, etc. The user requires the application to save and open their notes to their USB drive.
 2. The list of the system features you extracted from the user stories.
     3. Default filesystem access after first run for local user
     4. Creation of ‘Notes’ folder and forced access to ‘Notes’ folder after first run for USB user
@@ -47,9 +45,6 @@ Conversion notes:
 7. Indicate under each part which team member(s) has finished the tasks.
 8. A statement with the names of all members at the beginning or the end of your document stating that you all contributed to this document and is proofread by every team member.
     12. **Task allotment and statement**
-        3. Evan Rohrwasser
-        4. Gerardo Quintana
-        5. Conner Malloy
 9. A link to your project team’s github repository. Please ensure it is publicly viewable.
     13. **We need to upload Context Diagram, DFD, User Stories and Use Case Diagrams to the github along with the UI screenshots and demo video**
     14. [https://github.com/ctmalloy/ITSC-3155-Group-10/tree/main](https://github.com/ctmalloy/ITSC-3155-Group-10/tree/main) 
