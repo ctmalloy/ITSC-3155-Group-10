@@ -111,8 +111,6 @@ class Notepad:
     def quitApplication(self):
         self.root.destroy()
 
-    # exit()
-
     def showAbout(self):
         showinfo("Notepad", "ITSC 3155")
 
@@ -173,7 +171,6 @@ class Notepad:
                 # Change the window title
                 self.root.title(os.path.basename(self.file) + " - Notepad")
 
-
         else:
             file = open(self.file, "w")
             file.write(self.thisTextArea.get(1.0, END))
@@ -203,7 +200,6 @@ class Notepad:
     def run(self):
         # Run this instance
         self.root.mainloop()
-
 
 if __name__ == "__main__":
     notepad = Notepad(width=600, height=400)
