@@ -170,7 +170,6 @@ class Notepad:
                 # Change the window title
                 self.root.title(os.path.basename(self.file) + " - Notepad")
 
-
         else:
             file = open(self.file, "w")
             file.write(self.thisTextArea.get(1.0, END))
