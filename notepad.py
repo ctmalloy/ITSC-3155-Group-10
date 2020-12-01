@@ -3,7 +3,6 @@ from tkinter import messagebox
 from tkinter.filedialog import *
 from tkinter.messagebox import *
 
-
 class Notepad:
     # Root Tk object
     root = Tk()
@@ -111,8 +110,6 @@ class Notepad:
     def quitApplication(self):
         self.root.destroy()
 
-    # exit()
-
     def showAbout(self):
         showinfo("Notepad", "ITSC 3155")
 
@@ -203,7 +200,6 @@ class Notepad:
     def run(self):
         # Run this instance
         self.root.mainloop()
-
 
 if __name__ == "__main__":
     notepad = Notepad(width=600, height=400)
